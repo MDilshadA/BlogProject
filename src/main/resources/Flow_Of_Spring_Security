@@ -1,0 +1,38 @@
+###################Flow of the Code:#####################
+
+###########1--->Request for Authentication:
+
+When a user attempts to log in with a username and password, Spring Security's authentication mechanism gets triggered.
+
+
+###########2--->SecurityConfig Configuration:
+
+The SecurityConfig class configures the security settings for the application.
+It enables security features and sets up how authentication should be performed.
+
+##########3--->configure() Method:
+
+Inside configure(), the method auth.userDetailsService(customUserDetailsService) instructs Spring Security to use the provided customUserDetailsService for user authentication.
+It also specifies the password encoder to be used for handling password security.
+
+
+###########4-->CustomUserDetailsService Implementation:
+
+The CustomUserDetailsService class loads user details (like username, password, and roles) from the database using the UserRepository.
+The loadUserByUsername() method fetches the user details based on the provided username and constructs a UserDetails object that Spring Security uses for authentication.
+
+
+###########5--->Password Encoding:
+
+The BCryptPasswordEncoder provided by the passwordEncoder() method is used to encode passwords before storing them in the database and to verify them during authentication.
+
+
+###########6--->User Authentication:
+
+Spring Security uses the configured mechanisms to authenticate users based on the provided credentials.
+
+
+############7---->Successful/Failed Authentication:
+
+If the authentication is successful, the user is granted access to secured parts of the application.
+If the authentication fails, appropriate error handling mechanisms should be implemented to handle failed login attempts.
